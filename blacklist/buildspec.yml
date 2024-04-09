@@ -1,10 +1,11 @@
 version: 0.2
 
 phases:
+  install:
+    runtime-versions:
+      python: 3.10
   pre_build:
     commands:
-      - pip install --upgrade pip
-      - pip install setuptools --upgrade
       - pip install -r blacklist/Pipfile
 artifacts:
   files:
