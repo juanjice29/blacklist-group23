@@ -22,7 +22,7 @@ app.register_blueprint(usuarios_blueprint)
 app.register_blueprint(general_blueprint)
 app.register_blueprint(blacklist_blueprint)
 
-database_uri="postgresql+psycopg2://{}:{}@{}:{}/{}".format(os.environ.get("DB_USER"),os.environ.get("DB_PASSWORD"),os.environ.get("DB_HOST"),os.environ.get("DB_PORT"),os.environ.get("DB_NAME")) if not os.environ.get("ENV") == 'test' else "sqlite:///test.db"
+database_uri="postgresql+psycopg2://{}:{}@{}:{}/{}".format("postgres","C29-j12m2024","miso23-database.ct0mggaqc8yr.us-east-1.rds.amazonaws.com","5432","blacklist")
 app.config['SQLALCHEMY_DATABASE_URI'] = database_uri
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JWT_SECRET_KEY'] = 'frase-secreta'
