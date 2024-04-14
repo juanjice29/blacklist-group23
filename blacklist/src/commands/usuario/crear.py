@@ -1,8 +1,8 @@
 from ..base_command import BaseCommannd
 from sqlalchemy import or_
-from ...errors.errors import ResourcesRequired, ResourcesAlreadyExist
-from ...models import  db, Usuario, UsuarioSchema
-from ...validations import is_empty, obtener_password, es_correo_valido, obtener_fecha_actual
+from errors.errors import ResourcesRequired, ResourcesAlreadyExist
+from models import  db, Usuario, UsuarioSchema
+from validations import is_empty, obtener_password, es_correo_valido, obtener_fecha_actual
 from datetime import datetime
 import hashlib
 import uuid

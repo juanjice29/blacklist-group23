@@ -1,7 +1,7 @@
 from flask import jsonify, request, Blueprint, current_app
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from ..commands.blacklist.alta_blacklist import AltaBlacklist
-from ..commands.blacklist.consulta_blacklist import ConsultaBlacklist
+from commands.blacklist.alta_blacklist import AltaBlacklist
+from commands.blacklist.consulta_blacklist import ConsultaBlacklist
 
 blacklist_blueprint = Blueprint('blacklist', __name__)
 

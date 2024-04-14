@@ -1,6 +1,6 @@
 from ..base_command import BaseCommannd
-from ...errors.errors import  ExpiredInformation
-from ...models import  Usuario, UsuarioSchema
+from errors.errors import  ExpiredInformation
+from models import  Usuario, UsuarioSchema
 from datetime import datetime
 
 

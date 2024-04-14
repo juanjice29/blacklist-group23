@@ -1,5 +1,5 @@
 from .base_command import BaseCommannd
-from ..models import  db
+from models import  db
     
 class Reset(BaseCommannd):
   def __init__(self):

@@ -1,8 +1,8 @@
 from ..base_command import BaseCommannd
-from ...errors.errors import ResourcesRequired, NotFound
+from errors.errors import ResourcesRequired, NotFound
 from flask_jwt_extended import  create_access_token
-from ...models import  db, Usuario, UsuarioSchema
-from ...validations import is_empty, obtener_password
+from models import  db, Usuario, UsuarioSchema
+from validations import is_empty, obtener_password
 from datetime import datetime, timedelta
 import hashlib
 import secrets

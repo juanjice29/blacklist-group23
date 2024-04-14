@@ -1,7 +1,7 @@
 from ..base_command import BaseCommannd
-from ...errors.errors import ResourcesRequired
-from ...models import  db, Usuario, UsuarioSchema
-from ...validations import is_empty, obtener_fecha_actual
+from errors.errors import ResourcesRequired
+from models import  db, Usuario, UsuarioSchema
+from validations import is_empty, obtener_fecha_actual
 
 
 usuario_schema = UsuarioSchema()

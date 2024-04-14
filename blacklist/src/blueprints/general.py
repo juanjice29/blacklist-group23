@@ -1,5 +1,5 @@
 from flask import jsonify, request, Blueprint
-from ..commands.reset import Reset
+from commands.reset import Reset
 from flask_jwt_extended import jwt_required
 
 general_blueprint = Blueprint('general', __name__)

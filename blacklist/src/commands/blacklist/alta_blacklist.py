@@ -1,7 +1,7 @@
 from ..base_command import BaseCommannd
-from ...validations import is_empty, es_correo_valido, obtener_fecha_actual
-from ...errors.errors import ResourcesRequired, ResourcesAlreadyExist
-from ...models import  db, Blacklist, BlacklistSchema
+from validations import is_empty, es_correo_valido, obtener_fecha_actual
+from errors.errors import ResourcesRequired, ResourcesAlreadyExist
+from models import  db, Blacklist, BlacklistSchema
 from sqlalchemy import or_
 import uuid
 

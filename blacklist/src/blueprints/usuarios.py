@@ -1,10 +1,10 @@
-from flask import jsonify, request, Blueprint, current_app
-from ..commands.usuario.crear import Crear
-from ..commands.usuario.autentificacion import Autentificar
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, unset_jwt_cookies
-from ..commands.usuario.valida_autentificacion import ValidaAutentificacion
-from ..commands.usuario.actualiza import Actualiza
-from ..errors.errors import IncompleteRequest
+from flask import jsonify, request, Blueprint, current_app # type: ignore
+from commands.usuario.crear import Crear
+from commands.usuario.autentificacion import Autentificar
+from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity, unset_jwt_cookies # type: ignore
+from commands.usuario.valida_autentificacion import ValidaAutentificacion
+from commands.usuario.actualiza import Actualiza
+from errors.errors import IncompleteRequest
 
 usuarios_blueprint = Blueprint('usuarios', __name__)
 
