@@ -6,12 +6,10 @@ COPY . /app
 
 # Install the dependencies
 RUN pip install --upgrade pip
-RUN pip install -r /app/Pipfile
+RUN pip install -r /app/requirements.txt
 
 # Make port 3000 available to the world outside this container
-EXPOSE 3000
-
+EXPOSE 5000
 # Define environment variable
-ENV FLASK_APP=/app/src/main.py
-
-CMD /bin/bash -c "sleep 2 && flask run --host=0.0.0.0 -p 3000"
+#ENV FLASK_APP=/app/src/main.py
+CMD /bin/bash -c "python /app/application.py"
