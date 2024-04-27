@@ -5,6 +5,7 @@ from errors.errors import NotFound
 from faker import Faker
 from commands.usuario.crear import Crear
 from commands.usuario.autentificacion import Autentificar
+from datetime import datetime
 
 #datos mokeados
 @pytest.fixture
@@ -26,8 +27,7 @@ def test_crear_user(client, fake_new_user):
     with client.application.app_context():
         # Assuming db.session.add and db.session.commit are mocked if needed
         command = Crear(**fake_new_user)
-        result = command.execute()
-        print("el usuario",fake_new_user) 
+        result = command.execute()        # 
         assert result["username"] == fake_new_user["username"]
         assert result["dni"] == fake_new_user["dni"]
         assert result["fullName"] == fake_new_user["fullName"]
@@ -45,8 +45,10 @@ def test_autentificar(client, fake_new_user):
     with client.application.app_context():
         autentificar_command = Autentificar(username=fake_new_user["username"], password=fake_new_user["password"])
         result = autentificar_command.execute()
-
+        print("resultado autenticacion ",result)
         # Verificar que se autenticó correctamente
         assert result["username"] == fake_new_user["username"]
         assert result["token"]  # Verificar que se generó un token de acceso
         assert result["expireAt"]  # Verificar que se estableció una fecha de vencimiento para el token
+        #verificar formato iso
+        assert datetime.fromisoformat(result["expireAt"])

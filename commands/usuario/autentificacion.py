@@ -3,7 +3,7 @@ from errors.errors import ResourcesRequired, NotFound
 from flask_jwt_extended import  create_access_token
 from models import  db, Usuario, UsuarioSchema
 from validations import is_empty, obtener_password
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta,timezone
 import hashlib
 import secrets
 
@@ -26,9 +26,10 @@ class Autentificar(BaseCommannd):
         token = create_access_token(identity=usuario.id)
         usuario.salt = salt
         usuario.token = token
-        usuario.expireAt = (datetime.utcnow() + timedelta(hours=3)).isoformat()
-        usuario.updateAt = datetime.utcnow().isoformat()
+        usuario.expireAt = (datetime.now(timezone.utc) + timedelta(hours=3))
+        usuario.updateAt = datetime.now(timezone.utc)
         db.session.commit()
+
         return usuario_schema.dump(usuario)
     else:
         raise NotFound

@@ -47,3 +47,9 @@ class UsuarioSchema(SQLAlchemyAutoSchema):
         load_instance = True
         
     id = fields.String()
+    expireAt = fields.Method("format_expire_at_iso")
+    updateAt=fields.Method("format_update_at_iso")
+    def format_expire_at_iso(self, obj):
+        return obj.expireAt.isoformat() if obj.expireAt else None
+    def format_update_at_iso(self, obj):
+        return obj.updateAt.isoformat() if obj.updateAt else None
