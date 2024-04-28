@@ -5,6 +5,8 @@ from errors.errors import NotFound
 from faker import Faker
 from commands.usuario.crear import Crear
 from commands.usuario.autentificacion import Autentificar
+from commands.usuario.actualiza import Actualiza
+from commands.usuario.valida_autentificacion import ValidaAutentificacion
 from datetime import datetime
 
 #datos mokeados
@@ -52,3 +54,30 @@ def test_autentificar(client, fake_new_user):
         assert result["expireAt"]  # Verificar que se estableció una fecha de vencimiento para el token
         #verificar formato iso
         assert datetime.fromisoformat(result["expireAt"])
+
+def test_actualiza_user(client, fake_new_user):
+    with client.application.app_context():
+        command = Crear(**fake_new_user)
+        result = command.execute()
+    with client.application.app_context():
+        newName = 'OtroName'
+        actualizado = Actualiza(id=result.get("id"), status=None, dni=None, fullName=newName, phoneNumber=None)
+        resultact = actualizado.execute()
+        assert resultact.get("fullName") == newName
+
+def test_valida_autentificacion_user(client, fake_new_user):
+    # Crear un nuevo usuario para utilizarlo en la prueba de autenticación
+    with client.application.app_context():
+        crear_command = Crear(**fake_new_user)
+        crear_command.execute()
+
+    # Autenticar el usuario creado
+    with client.application.app_context():
+        autentificar_command = Autentificar(username=fake_new_user["username"], password=fake_new_user["password"])
+        result = autentificar_command.execute()
+
+    with client.application.app_context():
+        valida = ValidaAutentificacion(result.get("id"))
+        resul_valida = valida.execute()
+        assert resul_valida.get("fullName") == fake_new_user["fullName"]
+        
