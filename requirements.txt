@@ -1,7 +1,6 @@
 aniso8601==9.0.1
 click==8.0.1
 colorama==0.4.4
-coverage==5.5
 Faker==14.0.0
 Flask==1.1.2
 Flask-Cors==3.0.10
@@ -21,5 +20,7 @@ six==1.16.0
 SQLAlchemy==1.4.15
 Werkzeug==2.0.1
 python-dotenv==1.0.1
-psycopg2-binary
-pytest
+psycopg2-binary==2.9.2
+pytest==8.0.0
+pytest-cov==4.1.0
+coverage==7.4.1
