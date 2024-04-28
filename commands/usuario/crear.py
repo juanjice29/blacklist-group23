@@ -10,13 +10,13 @@ import uuid
 usuario_schema = UsuarioSchema()
     
 class Crear(BaseCommannd):
-  def __init__(self, username, password, email, dni, fullName, phoneNumber):
+  def __init__(self, username, password, email, dni, fullName):
     self.username = username
     self.password = password
     self.email = email
     self.dni = dni
     self.fullName = fullName
-    self.phoneNumber = phoneNumber
+    #self.phoneNumber = phoneNumber
   
   def execute(self):
     if is_empty(self.username) or is_empty(self.password) or is_empty(self.email) or not es_correo_valido(self.email):
