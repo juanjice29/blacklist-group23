@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+
+  blacklist:
+    build: blacklist/
+    hostname: blackhost
+    ports:
+      - "3000:3000"
+    environment:
+      - VERSION=1.0
+      - DB_USER=blank
+      - DB_PASSWORD=blankpass
+      - DB_HOST=blanklist_db
+      - DB_PORT=5432
+      - DB_NAME=db_blank
+    depends_on:
+      - blanklist_db
+    networks:
+      - app_net
+      - db_net
+
+  blanklist_db:
+    image: postgres:latest
+    hostname: blanklist_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: db_blank
+      POSTGRES_USER: blank
+      POSTGRES_PASSWORD: blankpass
+    volumes:
+      - pg_data_blank:/var/lib/postgresql/data
+    networks:
+      - db_net
+
+networks:
+  app_net:
+  db_net:
+
+volumes:
+  pg_data_blank:
