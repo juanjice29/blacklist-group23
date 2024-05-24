@@ -1,6 +1,9 @@
 import os 
 from os.path import join, dirname
 from dotenv import load_dotenv
+#dotenv_path =  '../.env.template'
+dotenv_path = join(dirname(__file__), '../.env.template')
+loaded = load_dotenv(dotenv_path)
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
@@ -15,9 +18,8 @@ import logging
 from datetime import timedelta
 
 
-#dotenv_path =  '../.env.template'
-dotenv_path = join(dirname(__file__), '../.env.template')
-loaded = load_dotenv(dotenv_path)
+import newrelic.agent
+newrelic.agent.initialize()
 
 app = Flask(__name__)
 app.register_blueprint(usuarios_blueprint)
@@ -51,6 +53,7 @@ db.create_all()
 
 @app.errorhandler(ApiError)
 def handle_exception(err):
+    newrelic.agent.record_exception()
     response = {
       "mssg": err.description,
       "version": os.environ.get("VERSION")

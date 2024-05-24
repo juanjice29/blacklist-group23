@@ -6,7 +6,7 @@ COPY . /app
 
 # Install the dependencies
 RUN pip install --upgrade pip
-RUN pip install -r /app/Pipfile
+RUN pip install --no-cache-dir -r /app/Pipfile
 
 # Make port 5000 available to the world outside this container
 EXPOSE 5000
@@ -15,3 +15,5 @@ EXPOSE 5000
 ENV FLASK_APP=/app/src/main.py
 
 CMD /bin/bash -c "sleep 2 && flask run --host=0.0.0.0 -p 5000"
+
+ENTRYPOINT ["newrelic-admin", "run-program"]
